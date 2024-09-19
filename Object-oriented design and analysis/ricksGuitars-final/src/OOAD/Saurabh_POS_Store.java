@@ -12,6 +12,8 @@ public class Saurabh_POS_Store {
 
         GuitarSpec whatErinLikes = new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, 6, Wood.ALDER, Wood.ALDER);
 
+        inventory.showInventory(inventory);
+
         ArrayList<Guitar> matchingGuitars = inventory.search(whatErinLikes);
         if (!matchingGuitars.isEmpty()) {
             System.out.println("Erin, you might like these guitars:");
@@ -66,15 +68,22 @@ public class Saurabh_POS_Store {
             System.out.println("Grand Total: $" + grandTotal);
 
             // Handle payment
-            System.out.println("Enter the payment amount: ");
-            double payment = scanner.nextDouble();
 
-            if (payment < grandTotal) {
-                System.out.println("Insufficient payment. Please enter an amount greater than or equal to the grand total.");
-            } else {
-                double change = payment - grandTotal;
-                System.out.println("Payment successful. Change: $" + change);
+
+            boolean hasPaid=false;
+            while(!hasPaid){
+                System.out.println("Enter the payment amount: ");
+                double payment = scanner.nextDouble();
+                if (payment < grandTotal) {
+                    System.out.println("Insufficient payment. Please enter an amount greater than or equal to the grand total.");
+                } else {
+                    double change = payment - grandTotal;
+                    System.out.println("Payment successful. Change: $" + change);
+                    hasPaid=true;
+                }
             }
+
+
 
             System.out.println("Thank you for your purchase!");
         } else {
@@ -101,8 +110,7 @@ public class Saurabh_POS_Store {
         inventory.addGuitar("6 29584", 2100.95, new GuitarSpec(Builder.PRS, "Dave Navarro Signature", Type.ELECTRIC, 6, Wood.MAHOGANY, Wood.MAPLE));
     }
 
-    // 1. add the UPC code in the menu
-    // 2. if a customer give less amount as compared to the total amount of the items, ask him to give remaining bucks.
+
 }
 
 

@@ -70,16 +70,20 @@ public class Saurabh_POS_Store {
             // Handle payment
 
 
-            boolean hasPaid=false;
-            while(!hasPaid){
+            boolean hasPaid = false;
+            double amountDue = grandTotal;
+
+            while (!hasPaid) {
                 System.out.println("Enter the payment amount: ");
                 double payment = scanner.nextDouble();
-                if (payment < grandTotal) {
-                    System.out.println("Insufficient payment. Please enter an amount greater than or equal to the grand total.");
+
+                if (payment < amountDue) {
+                    amountDue -= payment;
+                    System.out.println("Insufficient payment.  You need to pay: $" + amountDue + " more to complete your purchase.");
                 } else {
-                    double change = payment - grandTotal;
+                    double change = payment - amountDue;
                     System.out.println("Payment successful. Change: $" + change);
-                    hasPaid=true;
+                    hasPaid = true;
                 }
             }
 
